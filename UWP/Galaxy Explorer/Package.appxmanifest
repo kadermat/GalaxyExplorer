@@ -8,7 +8,7 @@
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Holographic" MinVersion="10.0.14393.1884" MaxVersionTested="10.0.14393.1884" />
+    <TargetDeviceFamily Name="Windows.Holographic" MinVersion="10.0.14393.1358" MaxVersionTested="10.0.14393.1884" />
     <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.16299.98" MaxVersionTested="10.0.16299.98" />
     <TargetDeviceFamily Name="Windows.Mobile" MinVersion="10.0.15254.16" MaxVersionTested="10.0.15254.16" />
   </Dependencies>

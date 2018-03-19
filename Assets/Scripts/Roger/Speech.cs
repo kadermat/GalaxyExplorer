@@ -16,7 +16,7 @@ public class Speech : MonoBehaviour
         changeMaterial = GetComponent<ChangeMaterial>();
         changeTexture = GetComponent<TextureSwap>();
 
-        keywords.Add("show", () =>
+        keywords.Add("PreAge", () =>
         {
             // Call the xxxx method on the earth object.
             PreAgeCalled();
@@ -25,10 +25,10 @@ public class Speech : MonoBehaviour
 
         });
 
-        keywords.Add("back", () =>
+        keywords.Add("normal", () =>
         {
             // Call the xxxx method on the earth object.
-            changedMaterialBack();
+            changedTextureBack();
             changeTexture.changeTextureBack();
             //changeMaterial.changeMaterialBack();
 
@@ -47,9 +47,9 @@ public class Speech : MonoBehaviour
         print("PreAge Speech works");
     }
 
-    void changedMaterialBack()
+    void changedTextureBack()
     {
-        print("Material is back to normal");
+        print("Texture is back to normal");
     }
 
     private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)

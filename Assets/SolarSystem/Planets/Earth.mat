@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Earth
-  m_Shader: {fileID: 4800000, guid: 02c061dd87b56114ea0daa5618e6c769, type: 3}
+  m_Shader: {fileID: 4800000, guid: 527b2fea1a1501743b0a2ededfd806d6, type: 3}
   m_ShaderKeywords: ALBEDO_ON ALPHA_USAGE_SPECULAR AMBIENTLIGHT_ON EMISSIVE_OFF FRESNEL_COLOR
     LIGHTMAP_OFF LIGHTPROBES_OFF LIGHT_DIFFUSE_SPEC NORMAL_TEXTURE SHOW_OFF TINT_OFF
     VERTCOLOR_OFF _FOG_OFF
@@ -44,6 +44,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _FilTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _LightmapTexture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -65,6 +69,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}

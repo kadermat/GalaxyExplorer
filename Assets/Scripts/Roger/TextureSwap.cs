@@ -15,33 +15,77 @@ public class TextureSwap : MonoBehaviour
 	private string BCAD = "BC";
 	public Texture[] textures;
 	public Text preAgeText;
-	
+    private Shader BlueMarbleShader;
+    private Shader DefaultEarthShader;
 
-	private Renderer rend;
+
+    private Renderer rend;
 
 	void Start()
 	{
 		rend = GetComponent<Renderer>();
-	}
+        BlueMarbleShader = Shader.Find("Custom/testShader");
+        DefaultEarthShader = Shader.Find("Planets/Earth");
+    }
 
 	public void changeTexture()
 	{
-		StartCoroutine(DoTextureLoop());
-		//	changeTextureOK = true;
-		//	if (changeTextureOK)
-		//	{
-		//Update();
-		//	enabled = true;
-		//	}
-		//	//for (int i = 1; i < textures.Length; i++)
-		//	//{
-		//	//	rend.material.mainTexture = textures[i];
-		//	//	StartCoroutine(Wait());
-		//	//	print("Texture on position" + i);
-		//	//}
-	}
+        if (BlueMarbleShader != null) {
+            rend.material.shader = BlueMarbleShader;
+        }
 
-	public IEnumerator DoTextureLoop()
+
+		StartCoroutine(DoTextureLoop());
+        //	changeTextureOK = true;
+        //	if (changeTextureOK)
+        //	{
+        //Update();
+        //	enabled = true;
+        //	}
+        //	//for (int i = 1; i < textures.Length; i++)
+        //	//{
+        //	//	rend.material.mainTexture = textures[i];
+        //	//	StartCoroutine(Wait());
+        //	//	print("Texture on position" + i);
+        //	//}
+
+
+
+
+    }
+
+    public void ChangeTextureForAirTraffic() {
+        if (BlueMarbleShader != null)
+        {
+            rend.material.shader = BlueMarbleShader;
+        }
+
+        StartCoroutine(DoTextureLoopAirtraffic());
+
+
+    }
+
+    public IEnumerator DoTextureLoopAirtraffic()
+    {
+        for (int i = 0; i < 2879; i+=5)
+        {
+            string CounterAsString = i.ToString();
+            while (CounterAsString.Length < 5)
+            {
+                CounterAsString = "0" + CounterAsString;
+            }
+            Texture texture = Resources.Load("Textures/airtraffic/AirTrafficWorldwide24h_4096x2048_" + CounterAsString) as Texture;
+
+            rend.material.mainTexture = texture;
+            //rend.material.SetFloat("_Blend", 2.0F);
+            print("Texture Name" + i);
+            yield return new WaitForSeconds(0.05f);
+        }
+        changeTextureBack();
+    }
+
+
+    public IEnumerator DoTextureLoop()
 	{
 		changeTextureOK = true;
 		print(changeTextureOK);
@@ -88,7 +132,11 @@ public class TextureSwap : MonoBehaviour
     {
 		changeTextureOK = false;
 		rend.material.mainTexture = textures[0];
-	}
+        if (DefaultEarthShader != null)
+        {
+            rend.material.shader = DefaultEarthShader;
+        }
+    }
 
  //   void FixedUpdate()
  //   {

@@ -34,6 +34,34 @@ public class Speech : MonoBehaviour
 
         });
 
+        keywords.Add("air", () =>
+        {
+            // Call the xxxx method on the earth object.
+            AirTrafficCalled();
+            changeTexture.ChangeTextureForAirTraffic();
+            //changeMaterial.changeMaterialBack();
+
+        });
+
+        keywords.Add("traffic", () =>
+        {
+            // Call the xxxx method on the earth object.
+            AirTrafficCalled();
+            changeTexture.ChangeTextureForAirTraffic();
+            //changeMaterial.changeMaterialBack();
+
+        });
+
+        keywords.Add("plane", () =>
+        {
+            // Call the xxxx method on the earth object.
+            AirTrafficCalled();
+            changeTexture.ChangeTextureForAirTraffic();
+            //changeMaterial.changeMaterialBack();
+
+        });
+
+
         // Tell the KeywordRecognizer about our keywords.
         keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
 
@@ -45,6 +73,11 @@ public class Speech : MonoBehaviour
     void PreAgeCalled()
     {
         print("PreAge Speech works");
+    }
+
+    void AirTrafficCalled()
+    {
+        print("Airtraffic Speech works");
     }
 
     void changedTextureBack()

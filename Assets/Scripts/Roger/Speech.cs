@@ -5,41 +5,34 @@ using UnityEngine.Windows.Speech;
 
 public class Speech : MonoBehaviour
 {
-    ChangeMaterial changeMaterial;
-    TextureSwap changeTexture;
-    KeywordRecognizer keywordRecognizer = null;
+    TextureSwap ChangeTexture;
+    KeywordRecognizer KeywordRecognizer = null;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
 
     // Use this for initialization
     void Start()
     {
-        changeMaterial = GetComponent<ChangeMaterial>();
-        changeTexture = GetComponent<TextureSwap>();
+        ChangeTexture = GetComponent<TextureSwap>();
 
-        keywords.Add("PreAge", () =>
+        keywords.Add("Preage", () =>
         {
             // Call the xxxx method on the earth object.
-            PreAgeCalled();
-            changeTexture.changeTexture();
-            //changeMaterial.changeMaterial();
-
+            PreageCalled();
+            ChangeTexture.ChangeTextureForPreage();
         });
 
         keywords.Add("normal", () =>
         {
             // Call the xxxx method on the earth object.
-            changedTextureBack();
-            changeTexture.changeTextureBack();
-            //changeMaterial.changeMaterialBack();
-
+            ChangedTextureBack();
+            ChangeTexture.ChangeTextureBack();
         });
 
         keywords.Add("air", () =>
         {
             // Call the xxxx method on the earth object.
             AirTrafficCalled();
-            changeTexture.ChangeTextureForAirTraffic();
-            //changeMaterial.changeMaterialBack();
+            ChangeTexture.ChangeTextureForAirTraffic();
 
         });
 
@@ -47,32 +40,28 @@ public class Speech : MonoBehaviour
         {
             // Call the xxxx method on the earth object.
             AirTrafficCalled();
-            changeTexture.ChangeTextureForAirTraffic();
-            //changeMaterial.changeMaterialBack();
-
+            ChangeTexture.ChangeTextureForAirTraffic();
         });
 
         keywords.Add("plane", () =>
         {
             // Call the xxxx method on the earth object.
             AirTrafficCalled();
-            changeTexture.ChangeTextureForAirTraffic();
-            //changeMaterial.changeMaterialBack();
-
+            ChangeTexture.ChangeTextureForAirTraffic();
         });
 
 
         // Tell the KeywordRecognizer about our keywords.
-        keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
+        KeywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
 
         // Register a callback for the KeywordRecognizer and start recognizing!
-        keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
-        keywordRecognizer.Start();
+        KeywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
+        KeywordRecognizer.Start();
     }
 
-    void PreAgeCalled()
+    void PreageCalled()
     {
-        print("PreAge Speech works");
+        print("Preage Speech works");
     }
 
     void AirTrafficCalled()
@@ -80,7 +69,7 @@ public class Speech : MonoBehaviour
         print("Airtraffic Speech works");
     }
 
-    void changedTextureBack()
+    void ChangedTextureBack()
     {
         print("Texture is back to normal");
     }

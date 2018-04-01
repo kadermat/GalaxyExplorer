@@ -5,33 +5,12 @@ using UnityEngine.Windows.Speech;
 
 public class SolarSystemPlanetsSpeech : MonoBehaviour {
 
-    ChangeMaterial changeMaterial;
-    TextureSwap changeTexture;
     KeywordRecognizer keywordRecognizer = null;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
 
     // Use this for initialization
     void Start()
     {
-        changeMaterial = GetComponent<ChangeMaterial>();
-        changeTexture = GetComponent<TextureSwap>();
-
-        keywords.Add("PreAge", () =>
-        {
-            // Call the xxxx method on the earth object.
-
-            //changeMaterial.changeMaterial();
-
-        });
-
-        keywords.Add("normal", () =>
-        {
-            // Call the xxxx method on the earth object.
-            changeTexture.changeTextureBack();
-            //changeMaterial.changeMaterialBack();
-
-        });
-
         // Tell the KeywordRecognizer about our keywords.
         keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
 

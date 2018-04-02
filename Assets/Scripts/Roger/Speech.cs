@@ -21,7 +21,14 @@ public class Speech : MonoBehaviour
             ChangeTexture.ChangeTextureForPreage();
         });
 
-        keywords.Add("normal", () =>
+		keywords.Add("BlueMarble", () =>
+		{
+			// Call the xxxx method on the earth object.
+			PreageCalled();
+			ChangeTexture.ChangeTextureForPreage();
+		});
+
+		keywords.Add("stop", () =>
         {
             // Call the xxxx method on the earth object.
             ChangedTextureBack();

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class TextureSwap : MonoBehaviour
 {
-	private float Duration = 0.5f;
+	private float Duration = 0.2f;
 	private bool ChangeTextureOK = false;
 	private int PreageStartTime = 19000;
 	private int PreageTime = 0;
@@ -15,7 +15,8 @@ public class TextureSwap : MonoBehaviour
 	private string BCAD = "BC";
 	public Text PreageText;
     private Shader BlueMarbleShader;
-    private Shader DefaultEarthShader;
+	private Shader AirTrafficShader;
+	private Shader DefaultEarthShader;
 
 
     private Renderer rend;
@@ -23,8 +24,9 @@ public class TextureSwap : MonoBehaviour
 	void Start()
 	{
 		rend = GetComponent<Renderer>();
-        BlueMarbleShader = Shader.Find("Custom/testShader");
-        DefaultEarthShader = Shader.Find("Planets/Earth");
+        AirTrafficShader = Shader.Find("Custom/AirTrafficShader");
+		BlueMarbleShader = Shader.Find("Custom/BlueMarbleShader");
+		DefaultEarthShader = Shader.Find("Planets/Earth");
     }
 
 	public void ChangeTextureForPreage()
@@ -40,9 +42,9 @@ public class TextureSwap : MonoBehaviour
 
     public void ChangeTextureForAirTraffic()
 	{
-        if (BlueMarbleShader != null)
+        if (AirTrafficShader != null)
         {
-            rend.material.shader = BlueMarbleShader;
+            rend.material.shader = AirTrafficShader;
         }
 
         StartCoroutine(DoTextureLoopAirtraffic());
@@ -118,16 +120,26 @@ public class TextureSwap : MonoBehaviour
 				break;
 			}
 
-			string CounterAsString = i.ToString();
-			while (CounterAsString.Length < 5)
-			{
-				CounterAsString = "0" + CounterAsString;
-			}
+			//string CounterAsString = i.ToString();
+			//while (CounterAsString.Length < 5)
+			//{
+			//	CounterAsString = "0" + CounterAsString;
+			//}
 			SetPreageText();
-			Texture texture = Resources.Load("Textures/preage/EarthVisualizer_" + CounterAsString) as Texture;
+			
+			Texture texture = Resources.Load("Textures/preage/EarthVisualizer_" + i.ToString("00000")) as Texture;
 			print("Texture Name" + texture);
-			rend.material.mainTexture = texture;
-			yield return new WaitForSeconds(Duration);
+			rend.material.SetTexture("_MainTex", texture);
+
+			Texture texture2 = Resources.Load("Textures/preage/EarthVisualizer_" + (i + 1).ToString("00000")) as Texture;
+			print("Texture2 Name" + texture2);
+			rend.material.SetTexture("_SecTex", texture2);
+
+			for(int j = 0; j < 100; j++)
+			{
+				rend.material.SetFloat("_Blend", 0.01F * j);
+				yield return new WaitForSeconds(Duration / 100);
+			}
 		}
 		ChangeTextureBack();
 		PreageCounter = 0;

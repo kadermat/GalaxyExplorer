@@ -1,7 +1,7 @@
 ﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
 
-Shader "Custom/testShader" {
+Shader "Custom/AirTrafficShader" {
 	Properties{
 		_Color("Main Color", Color) = (1,1,1,1)
 		_MainTex("Diffuse (RGB) Alpha (A)", 2D) = "gray" {}

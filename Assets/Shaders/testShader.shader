@@ -54,6 +54,7 @@ Shader "Custom/testShader" {
 
 	float4 frag(v2f IN) : COLOR
 	{
+
 		float2 equiUV = RadialCoords(IN.normal);
 		return tex2D(_MainTex, equiUV);
 	}

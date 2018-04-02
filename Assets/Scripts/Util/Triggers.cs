@@ -27,14 +27,14 @@ public class Triggers : MonoBehaviour {
         {
             Debug.Log("1 pressed");
 
-            changeTexture.changeTexture();
+            changeTexture.ChangeTextureForPreage();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             Debug.Log("1 pressed");
 
-            changeTexture.changeTextureBack();
+            changeTexture.ChangeTextureBack();
             
         }
     }

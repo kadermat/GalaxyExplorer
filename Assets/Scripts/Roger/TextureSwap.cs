@@ -110,7 +110,7 @@ public class TextureSwap : MonoBehaviour
 	public IEnumerator DoTextureLoopPreage()
 	{
 		ChangeTextureOK = true;
-		for (int i = 0; i < 3686; i += 46)
+		for (int i = 0; i < 68; i += 1)
 		{
 
 			if (ChangeTextureOK == false)
@@ -125,6 +125,7 @@ public class TextureSwap : MonoBehaviour
 			}
 			SetPreageText();
 			Texture texture = Resources.Load("Textures/preage/EarthVisualizer_" + CounterAsString) as Texture;
+			print("Texture Name" + texture);
 			rend.material.mainTexture = texture;
 			yield return new WaitForSeconds(Duration);
 		}
@@ -145,14 +146,22 @@ public class TextureSwap : MonoBehaviour
 		{
 			BCAD = "AD";
 			PreageCounter = 0;
+			print("Switch");
 		}
 
 		if (BCAD == "AD")
 		{
-			PreageTime = PreageTime + PreageCounter;
+			PreageTime = 0 + PreageCounter;
 		}
 		PreageText.text = "Earth: " + PreageTime + " " + BCAD;
-		PreageCounter = PreageCounter + 500;
+		if (BCAD == "BC" || (BCAD == "AD" && PreageTime < 2000))
+		{			
+			PreageCounter = PreageCounter + 500;
+		}
+		else
+		{
+			PreageCounter = PreageCounter + 40;
+		}
 	}
 
 	public void ChangeTextureBack()

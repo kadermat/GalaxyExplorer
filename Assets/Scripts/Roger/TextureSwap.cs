@@ -4,6 +4,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using GalaxyExplorer;
 
 public class TextureSwap : MonoBehaviour
 {
@@ -46,7 +47,7 @@ public class TextureSwap : MonoBehaviour
         {
             rend.material.shader = AirTrafficShader;
         }
-
+        PrepareEarthModelForAirtraffic();
         StartCoroutine(DoTextureLoopAirtraffic());
 
     }
@@ -186,4 +187,33 @@ public class TextureSwap : MonoBehaviour
             rend.material.shader = DefaultEarthShader;
         }
     }
+
+    private void PrepareEarthModelForAirtraffic() {
+        StopEarthFromSpinning();
+        ChangeRotationOfEarth();
+    }
+
+    private void StopEarthFromSpinning() {
+        GameObject EarthUpClose = GameObject.Find("EarthUpClose");
+        EarthUpClose.GetComponent<ConstantRotateAxis>().enabled = false;
+    }
+
+    private void ChangeRotationOfEarth() {
+        GameObject EarthUpClose = GameObject.Find("EarthUpClose");
+        
+        EarthUpClose.transform.rotation.eulerAngles;
+        
+    }
+
+    private void DisableEarthClouds() {
+        GameObject EarthUpClose = GameObject.Find("EarthClouds");
+        EarthUpClose.GetComponent<ConstantRotateAxis>().enabled = false;
+    }
+
+    private void DisableEarthGlow() {
+        GameObject EarthUpClose = GameObject.Find("EarthGlow");
+        EarthUpClose.GetComponent<ConstantRotateAxis>().enabled = false;
+    }
+
+
 }

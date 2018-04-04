@@ -18,7 +18,7 @@ public class TextureSwap : MonoBehaviour
     private Shader BlueMarbleShader;
 	private Shader AirTrafficShader;
 	private Shader DefaultEarthShader;
-
+    private Texture defaultTexture;
 
     private Renderer rend;
 
@@ -28,10 +28,42 @@ public class TextureSwap : MonoBehaviour
         AirTrafficShader = Shader.Find("Custom/AirTrafficShader");
 		BlueMarbleShader = Shader.Find("Custom/BlueMarbleShader");
 		DefaultEarthShader = Shader.Find("Planets/Earth");
+        defaultTexture = rend.material.mainTexture;
     }
 
-	public void ChangeTextureForPreage()
+    public void prepareForTextureChange(string name) {
+
+        switch (name.ToLower())
+        {
+            case "preage":
+
+                break;
+            case "airtraffic":
+                break;
+            default:
+                print("unknwon textureSwap");
+                break;
+        }
+
+    }
+
+    private void changeTexture(IEnumerator loop, Shader shader) {
+        ChangeTextureOK = false;
+        if (shader != null)
+        {
+            rend.material.shader = shader;
+        }
+        StartCoroutine(loop);
+
+
+    }
+
+
+    public void ChangeTextureForPreage()
 	{
+        ChangeTextureOK = false;
+
+
         if (BlueMarbleShader != null)
 		{
             rend.material.shader = BlueMarbleShader;
@@ -43,6 +75,10 @@ public class TextureSwap : MonoBehaviour
 
     public void ChangeTextureForAirTraffic()
 	{
+        ChangeTextureOK = false;
+        
+
+
         if (AirTrafficShader != null)
         {
             rend.material.shader = AirTrafficShader;
@@ -53,21 +89,41 @@ public class TextureSwap : MonoBehaviour
     }
 
     public IEnumerator DoTextureLoopAirtraffic()
-    {
-        for (int i = 0; i < 2879; i+=5)
+    {//2879
+        for (int i = 0; i < 200; i+=5)
         {
+
+
+            ChangeTextureOK = true;
+
+
+            if (ChangeTextureOK == false)
+            {
+                break;
+            }
+
             string CounterAsString = i.ToString();
             while (CounterAsString.Length < 5)
             {
                 CounterAsString = "0" + CounterAsString;
             }
 			Texture texture = Resources.Load("Textures/airtraffic/AirTrafficWorldwide24h_4096x2048_" + CounterAsString) as Texture;
+            if (texture != null)
+            {
+                rend.material.mainTexture = texture;
+                //rend.material.SetFloat("_Blend", 2.0F);
+                print("Texture Name" + i);
 
-            rend.material.mainTexture = texture;
-            //rend.material.SetFloat("_Blend", 2.0F);
-            print("Texture Name" + i);
-            yield return new WaitForSeconds(0.05f);
+
+                yield return new WaitForSeconds(0.05f);
+            }
+            else {
+                print("null Texture Name" + i);
+                yield return new WaitForSeconds(0.0f);
+            }
+
         }
+        revertStatusToNormal();
         ChangeTextureBack();
     }
 
@@ -112,7 +168,7 @@ public class TextureSwap : MonoBehaviour
 
 	public IEnumerator DoTextureLoopPreage()
 	{
-		ChangeTextureOK = true;
+        ChangeTextureOK = true;
 		for (int i = 0; i < 68; i += 1)
 		{
 
@@ -180,39 +236,67 @@ public class TextureSwap : MonoBehaviour
 	public void ChangeTextureBack()
     {
 		ChangeTextureOK = false;
-		Texture texture = Resources.Load("Textures/EarthDiffuseSpecular") as Texture;
-		rend.material.mainTexture = texture;
+		//Texture texture = Resources.Load("Textures/EarthDiffuseSpecular") as Texture;
+		rend.material.mainTexture = defaultTexture;
         if (DefaultEarthShader != null)
         {
             rend.material.shader = DefaultEarthShader;
         }
+        else {
+            print("Defaultshader is null");
+        }
     }
+
+    private void revertStatusToNormal() {
+
+        SetEarthSpinningStatus(true);
+        ChangeRotationOfEarth(new Vector3(-90.0f,0.0f, 0.0f));
+        SetEarthClouds(true);
+        SetEarthGlow(true);
+    }
+
+
 
     private void PrepareEarthModelForAirtraffic() {
-        StopEarthFromSpinning();
-        ChangeRotationOfEarth();
+        SetEarthSpinningStatus(false);
+        ChangeRotationOfEarth(Vector3.zero);
+        SetEarthClouds(false);
+        SetEarthGlow(false);
     }
 
-    private void StopEarthFromSpinning() {
+    private void SetEarthSpinningStatus(bool status) {
         GameObject EarthUpClose = GameObject.Find("EarthUpClose");
-        EarthUpClose.GetComponent<ConstantRotateAxis>().enabled = false;
+        EarthUpClose.GetComponent<ConstantRotateAxis>().enabled = status;
     }
 
-    private void ChangeRotationOfEarth() {
+    private void ChangeRotationOfEarth(Vector3 rot) {
         GameObject EarthUpClose = GameObject.Find("EarthUpClose");
-        
-        EarthUpClose.transform.rotation.eulerAngles;
-        
+
+        transform.eulerAngles = rot;
     }
 
-    private void DisableEarthClouds() {
-        GameObject EarthUpClose = GameObject.Find("EarthClouds");
-        EarthUpClose.GetComponent<ConstantRotateAxis>().enabled = false;
+    private void SetEarthClouds(bool status) {
+        GameObject EarthUpClose = GameObject.Find("EarthUpClose");
+
+        foreach (Transform child in transform)
+        {
+            if (child.name.Equals("EarthClouds"))
+            {
+                child.gameObject.SetActive(status);
+            }
+        }
     }
 
-    private void DisableEarthGlow() {
-        GameObject EarthUpClose = GameObject.Find("EarthGlow");
-        EarthUpClose.GetComponent<ConstantRotateAxis>().enabled = false;
+    private void SetEarthGlow(bool status) {
+        GameObject EarthUpClose = GameObject.Find("EarthUpClose");
+        foreach (Transform child in transform)
+        {
+            if (child.name.Equals("EarthGlow")) {
+                child.gameObject.SetActive(status);
+            }
+        }
+
+
     }
 
 

@@ -47,13 +47,14 @@ public class TextureSwap : MonoBehaviour
 
     }
 
-    private void changeTexture(IEnumerator loop, Shader shader) {
+    private void changeTexture(TextureSwapSpezifikation spez) {
         ChangeTextureOK = false;
-        if (shader != null)
+        Shader specialShader = spez.GetSpecialShader();
+        if (specialShader != null)
         {
-            rend.material.shader = shader;
+            rend.material.shader = specialShader;
         }
-        StartCoroutine(loop);
+        StartCoroutine(spez.TextureLoop());
 
 
     }

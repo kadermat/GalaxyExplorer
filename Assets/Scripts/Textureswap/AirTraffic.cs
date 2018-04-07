@@ -11,8 +11,13 @@ public class AirTraffic : TextureSwapSpezifikation {
         this.source = source;
     }
 
+	public IEnumerator PictureEnumerator()
+	{
+		return null;
+	}
 
-    public Shader GetSpecialShader() {
+
+	public Shader GetSpecialShader() {
         return Shader.Find("Custom/AirTrafficShader");
 
     }

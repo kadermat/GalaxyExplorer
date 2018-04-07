@@ -47,6 +47,7 @@ public class TextureSwap : MonoBehaviour
 
     }
 
+/**
     private void changeTexture(TextureSwapSpezifikation spez) {
         ChangeTextureOK = false;
         Shader specialShader = spez.GetSpecialShader();
@@ -59,6 +60,7 @@ public class TextureSwap : MonoBehaviour
 
 
     }
+    **/
 
 
     public void ChangeTextureForPreage()

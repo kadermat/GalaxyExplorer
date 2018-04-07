@@ -47,19 +47,6 @@ public class TextureSwap : MonoBehaviour
 
     }
 
-    private void changeTexture(TextureSwapSpezifikation spez) {
-        ChangeTextureOK = false;
-        Shader specialShader = spez.GetSpecialShader();
-        if (specialShader != null)
-        {
-            rend.material.shader = specialShader;
-        }
-        StartCoroutine(spez.TextureLoop());
-
-
-    }
-
-
     public void ChangeTextureForPreage()
 	{
         ChangeTextureOK = false;

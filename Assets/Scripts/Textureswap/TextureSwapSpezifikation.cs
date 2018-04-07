@@ -5,7 +5,7 @@ using UnityEngine;
 public interface TextureSwapSpezifikation 
 {
     Shader GetSpecialShader();
-    IEnumerator PictureEnumerator();
+    IEnumerator TextureLoop();
 
     void Preparation();
 

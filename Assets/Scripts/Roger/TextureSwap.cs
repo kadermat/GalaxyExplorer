@@ -54,6 +54,7 @@ public class TextureSwap : MonoBehaviour
         {
             rend.material.shader = specialShader;
         }
+
         StartCoroutine(spez.TextureLoop());
 
 
@@ -77,12 +78,17 @@ public class TextureSwap : MonoBehaviour
     public void ChangeTextureForAirTraffic()
 	{
         ChangeTextureOK = false;
-        
+
 
 
         if (AirTrafficShader != null)
         {
+            Debug.Log("Airtraffic shader found");
             rend.material.shader = AirTrafficShader;
+        }
+        else {
+            Debug.Log("Airtraffic shader missing");
+
         }
         PrepareEarthModelForAirtraffic();
         StartCoroutine(DoTextureLoopAirtraffic());
@@ -90,13 +96,13 @@ public class TextureSwap : MonoBehaviour
     }
 
     public IEnumerator DoTextureLoopAirtraffic()
-    {//2879
-        for (int i = 0; i < 200; i+=5)
+    {
+        for (int i = 0; i < 2879; i+=5)
         {
 
 
             ChangeTextureOK = true;
-
+            Destroy(rend.material.mainTexture);
 
             if (ChangeTextureOK == false)
             {
@@ -283,6 +289,7 @@ public class TextureSwap : MonoBehaviour
         {
             if (child.name.Equals("EarthClouds"))
             {
+                Debug.Log("set clouds to : " + status.ToString());
                 child.gameObject.SetActive(status);
             }
         }

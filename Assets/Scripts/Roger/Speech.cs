@@ -28,7 +28,15 @@ public class Speech : MonoBehaviour
 			ChangeTexture.ChangeTextureForPreage();
 		});
 
-		keywords.Add("stop", () =>
+
+        keywords.Add("two", () =>
+        {
+            // Call the xxxx method on the earth object.
+            PreageCalled();
+            ChangeTexture.ChangeTextureForPreage();
+        });
+
+        keywords.Add("stop", () =>
         {
             // Call the xxxx method on the earth object.
             ChangedTextureBack();
@@ -51,6 +59,13 @@ public class Speech : MonoBehaviour
         });
 
         keywords.Add("plane", () =>
+        {
+            // Call the xxxx method on the earth object.
+            AirTrafficCalled();
+            ChangeTexture.ChangeTextureForAirTraffic();
+        });
+
+        keywords.Add("one", () =>
         {
             // Call the xxxx method on the earth object.
             AirTrafficCalled();

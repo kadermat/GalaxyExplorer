@@ -102,10 +102,8 @@ public class TextureSwap : MonoBehaviour
         for (int i = 0; i < 2879; i+=5)
         {
 
-
+            Resources.UnloadUnusedAssets();
             ChangeTextureOK = true;
-            Destroy(rend.material.mainTexture);
-
             if (ChangeTextureOK == false)
             {
                 break;
@@ -124,12 +122,13 @@ public class TextureSwap : MonoBehaviour
                 print("Texture Name" + i);
 
 
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.1f);
             }
             else {
                 print("null Texture Name" + i);
                 yield return new WaitForSeconds(0.0f);
             }
+
 
         }
         revertStatusToNormal();
@@ -280,26 +279,29 @@ public class TextureSwap : MonoBehaviour
 
     private void ChangeRotationOfEarth(Vector3 rot) {
         GameObject EarthUpClose = GameObject.Find("EarthUpClose");
-
+        print("Earth up close found");
         transform.eulerAngles = rot;
     }
 
     private void SetEarthClouds(bool status) {
         GameObject EarthUpClose = GameObject.Find("EarthUpClose");
 
-        foreach (Transform child in transform)
+        foreach (Transform child in EarthUpClose.transform)
         {
             if (child.name.Equals("EarthClouds"))
             {
                 Debug.Log("set clouds to : " + status.ToString());
                 child.gameObject.SetActive(status);
+            } else {
+                Debug.Log("child name: : " + child.name);
+
             }
         }
     }
 
     private void SetEarthGlow(bool status) {
         GameObject EarthUpClose = GameObject.Find("EarthUpClose");
-        foreach (Transform child in transform)
+        foreach (Transform child in EarthUpClose.transform)
         {
             if (child.name.Equals("EarthGlow")) {
                 child.gameObject.SetActive(status);

@@ -17,7 +17,8 @@ namespace GalaxyExplorer
             public float verticalOffset;
         }
 
-        public Material instancingMaterial;
+		public bool stopRotation = false;
+		public Material instancingMaterial;
         private Vector3 originalLightPosition;
 
         private MeshFilter meshFilter;
@@ -71,6 +72,16 @@ namespace GalaxyExplorer
                 GeneratePattern();
             }
         }
+
+		public void StopAstroidBelt()
+		{
+			stopRotation = true;
+		}
+
+		public void RestartAstroidBelt()
+		{
+			stopRotation = false;
+		}
 
 		[ContextMenu("Generate Pattern")]
         public void GeneratePattern()
@@ -208,18 +219,27 @@ namespace GalaxyExplorer
 
         private void Update()
         {
-            age += Time.deltaTime * rotationSpeed;
+			if (stopRotation)
+			{
+				rotationSpeed = 0.0f;
+			}
+			else
+			{
+				rotationSpeed = -0.02f;
+			}
 
-            if (instancingMaterial)
-            {
-                if (sunTransform)
-                {
-                    instancingMaterial.SetVector("_LightPosition", sunTransform.transform.position);
-                }
+			age += Time.deltaTime * rotationSpeed;
 
-                generated.transform.localRotation = Quaternion.AngleAxis(age * Mathf.Rad2Deg, Vector3.up);
-            }
-        }
+			if (instancingMaterial)
+			{
+				if (sunTransform)
+				{
+					instancingMaterial.SetVector("_LightPosition", sunTransform.transform.position);
+				}
+
+				generated.transform.localRotation = Quaternion.AngleAxis(age * Mathf.Rad2Deg, Vector3.up);
+			}
+		}
 
         private void OnDestroy()
         {

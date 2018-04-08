@@ -2,12 +2,14 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
+using System;
+using GalaxyExplorer;
 
 public class Speech : MonoBehaviour
 {
     TextureSwap ChangeTexture;
-	//OrbitUpdaterTest OrbitUpdater;
-	//AsteroidRingTest AsteroidRing;
+	OrbitUpdater OrbitUpdater;
+	AsteroidRing AsteroidRing;
 	KeywordRecognizer KeywordRecognizer = null;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
 
@@ -15,8 +17,8 @@ public class Speech : MonoBehaviour
     void Start()
     {
         ChangeTexture = GetComponent<TextureSwap>();
-		//OrbitUpdater = GetComponent<OrbitUpdaterTest>();
-		//AsteroidRing = GetComponent<AsteroidRingTest>();
+		OrbitUpdater = GetComponent<OrbitUpdater>();
+		AsteroidRing = GetComponent<AsteroidRing>();
 
 		keywords.Add("Preage", () =>
         {
@@ -61,30 +63,71 @@ public class Speech : MonoBehaviour
             ChangeTexture.ChangeTextureForAirTraffic();
         });
 
-		//keywords.Add("now", () =>
-		//{
-		//	// Call the xxxx method on the earth object.
-		//	ActualTime();
-		//	OrbitUpdater.ChangePlanetPositionToNow();
-		//	AsteroidRing.StopAstroidBelt();
-		//});
+		Action nowFunction = () =>
+		{
+			// Call the xxxx method on the earth object.
+			ActualTime();
+			if (OrbitUpdater != null)
+			{
+				OrbitUpdater.ChangePlanetPositionToNow();
+			}
+			else
+			{
+				OrbitUpdater[] orbitUpdaters = GetComponentsInChildren<OrbitUpdater>();
+				foreach (OrbitUpdater orbitUpdater in orbitUpdaters)
+				{
+					orbitUpdater.ChangePlanetPositionToNow();
+				}
+			}
 
-		//keywords.Add("currentTime", () =>
-		//{
-		//	// Call the xxxx method on the earth object.
-		//	ActualTime();
-		//	OrbitUpdater.ChangePlanetPositionToNow();
-		//	AsteroidRing.StopAstroidBelt();
-		//});
+			if (AsteroidRing != null)
+			{
+				AsteroidRing.StopAstroidBelt();
+			}
+			else
+			{
+				AsteroidRing[] asteroidRings = GetComponentsInChildren<AsteroidRing>();
+				foreach (AsteroidRing asteroidRing in asteroidRings)
+				{
+					asteroidRing.StopAstroidBelt();
+				}
+			}
+		};
 
-		//keywords.Add("go", () =>
-		//{
-		//	// Call the xxxx method on the earth object.
-		//	Go();
-		//	OrbitUpdater.RestartSolarSystemSimulation();
-		//	AsteroidRing.RestartAstroidBelt();
-		//});
+		keywords.Add("now", nowFunction);
 
+		keywords.Add("currentTime", nowFunction);
+
+		keywords.Add("go", () =>
+		{
+			// Call the xxxx method on the earth object.
+			Go();
+			if (OrbitUpdater != null)
+			{
+				OrbitUpdater.RestartSolarSystemSimulation();
+			}
+			else
+			{
+				OrbitUpdater[] orbitUpdaters = GetComponentsInChildren<OrbitUpdater>();
+				foreach (OrbitUpdater orbitUpdater in orbitUpdaters)
+				{
+					orbitUpdater.RestartSolarSystemSimulation();
+				}
+			}
+
+			if (AsteroidRing != null)
+			{
+				AsteroidRing.RestartAstroidBelt();
+			}
+			else
+			{
+				AsteroidRing[] asteroidRings = GetComponentsInChildren<AsteroidRing>();
+				foreach(AsteroidRing asteroidRing in asteroidRings)
+				{
+					asteroidRing.RestartAstroidBelt();
+				}				
+			}
+		});
 
 		// Tell the KeywordRecognizer about our keywords.
 		KeywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());

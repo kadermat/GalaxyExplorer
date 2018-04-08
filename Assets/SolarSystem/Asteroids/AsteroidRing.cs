@@ -72,7 +72,7 @@ namespace GalaxyExplorer
             }
         }
 
-        [ContextMenu("Generate Pattern")]
+		[ContextMenu("Generate Pattern")]
         public void GeneratePattern()
         {
             List<InstanceData> positions = GeneratePositions();

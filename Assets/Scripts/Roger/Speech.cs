@@ -6,15 +6,19 @@ using UnityEngine.Windows.Speech;
 public class Speech : MonoBehaviour
 {
     TextureSwap ChangeTexture;
-    KeywordRecognizer KeywordRecognizer = null;
+	//OrbitUpdaterTest OrbitUpdater;
+	//AsteroidRingTest AsteroidRing;
+	KeywordRecognizer KeywordRecognizer = null;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
 
     // Use this for initialization
     void Start()
     {
         ChangeTexture = GetComponent<TextureSwap>();
+		//OrbitUpdater = GetComponent<OrbitUpdaterTest>();
+		//AsteroidRing = GetComponent<AsteroidRingTest>();
 
-        keywords.Add("Preage", () =>
+		keywords.Add("Preage", () =>
         {
             // Call the xxxx method on the earth object.
             PreageCalled();
@@ -57,9 +61,33 @@ public class Speech : MonoBehaviour
             ChangeTexture.ChangeTextureForAirTraffic();
         });
 
+		//keywords.Add("now", () =>
+		//{
+		//	// Call the xxxx method on the earth object.
+		//	ActualTime();
+		//	OrbitUpdater.ChangePlanetPositionToNow();
+		//	AsteroidRing.StopAstroidBelt();
+		//});
 
-        // Tell the KeywordRecognizer about our keywords.
-        KeywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
+		//keywords.Add("currentTime", () =>
+		//{
+		//	// Call the xxxx method on the earth object.
+		//	ActualTime();
+		//	OrbitUpdater.ChangePlanetPositionToNow();
+		//	AsteroidRing.StopAstroidBelt();
+		//});
+
+		//keywords.Add("go", () =>
+		//{
+		//	// Call the xxxx method on the earth object.
+		//	Go();
+		//	OrbitUpdater.RestartSolarSystemSimulation();
+		//	AsteroidRing.RestartAstroidBelt();
+		//});
+
+
+		// Tell the KeywordRecognizer about our keywords.
+		KeywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
 
         // Register a callback for the KeywordRecognizer and start recognizing!
         KeywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
@@ -81,7 +109,17 @@ public class Speech : MonoBehaviour
         print("Texture is back to normal");
     }
 
-    private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
+	void ActualTime()
+	{
+		print("Changed Planet Position to actual time");
+	}
+
+	void Go()
+	{
+		print("SolarSystemView changed back to normal");
+	}
+
+	private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
         System.Action keywordAction;
         if (keywords.TryGetValue(args.text, out keywordAction))

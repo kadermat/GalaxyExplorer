@@ -103,7 +103,7 @@ namespace GalaxyExplorer
         public float RealitySemiMajorAxisScale = 1;
 
         public float Speed = 100.0f;
-        public float SpeedMultiplier = 1;
+		public float SpeedMultiplier = 1;
         public float TransitionSpeedMultiplier = 1.0f;
 
         public int MaxIterations = 50;
@@ -118,24 +118,24 @@ namespace GalaxyExplorer
         private void Start()
         {
             StartDate = myDateTime = DateTime.Now;
-        }
 
-        // Update is called once per frame
-        private void Update()
+		}
+
+		// Update is called once per frame
+		private void Update()
         {
-            if (computed && TransitionSpeedMultiplier == 0.0f)
-            {
-                // Don't animate the planet rotation during transitions
-                return;
-            }
+			if (computed && TransitionSpeedMultiplier == 0.0f)
+			{
+				// Don't animate the planet rotation during transitions
+				return;
+			}
 
-            myDateTime += TimeSpan.FromDays(Time.deltaTime * Speed * SpeedMultiplier * TransitionSpeedMultiplier);
-            transform.localPosition = CalculatePosition(myDateTime);
+			myDateTime += TimeSpan.FromDays(Time.deltaTime * Speed * SpeedMultiplier * TransitionSpeedMultiplier);
+			transform.localPosition = CalculatePosition(myDateTime);
+			computed = true;
+		}
 
-            computed = true;
-        }
-
-        public Vector3 CalculatePosition(DateTime time)
+		public Vector3 CalculatePosition(DateTime time)
         {
             float trueAnomoly = CalculateTrueAnomaly(time);
             return CalculatePosition(trueAnomoly);

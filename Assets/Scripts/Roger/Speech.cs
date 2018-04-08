@@ -34,7 +34,15 @@ public class Speech : MonoBehaviour
 			ChangeTexture.ChangeTextureForPreage();
 		});
 
-		keywords.Add("stop", () =>
+
+        keywords.Add("two", () =>
+        {
+            // Call the xxxx method on the earth object.
+            PreageCalled();
+            ChangeTexture.ChangeTextureForPreage();
+        });
+
+        keywords.Add("stop", () =>
         {
             // Call the xxxx method on the earth object.
             ChangedTextureBack();
@@ -128,6 +136,13 @@ public class Speech : MonoBehaviour
 				}				
 			}
 		});
+
+        keywords.Add("one", () =>
+        {
+            // Call the xxxx method on the earth object.
+            AirTrafficCalled();
+            ChangeTexture.ChangeTextureForAirTraffic();
+        });
 
 		// Tell the KeywordRecognizer about our keywords.
 		KeywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());

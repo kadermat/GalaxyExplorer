@@ -47,6 +47,22 @@ public class TextureSwap : MonoBehaviour
 
     }
 
+/**
+    private void changeTexture(TextureSwapSpezifikation spez) {
+        ChangeTextureOK = false;
+        Shader specialShader = spez.GetSpecialShader();
+        if (specialShader != null)
+        {
+            rend.material.shader = specialShader;
+        }
+
+        StartCoroutine(spez.TextureLoop());
+
+
+    }
+    **/
+
+
     public void ChangeTextureForPreage()
 	{
         ChangeTextureOK = false;
@@ -64,12 +80,17 @@ public class TextureSwap : MonoBehaviour
     public void ChangeTextureForAirTraffic()
 	{
         ChangeTextureOK = false;
-        
+
 
 
         if (AirTrafficShader != null)
         {
+            Debug.Log("Airtraffic shader found");
             rend.material.shader = AirTrafficShader;
+        }
+        else {
+            Debug.Log("Airtraffic shader missing");
+
         }
         PrepareEarthModelForAirtraffic();
         StartCoroutine(DoTextureLoopAirtraffic());
@@ -77,14 +98,12 @@ public class TextureSwap : MonoBehaviour
     }
 
     public IEnumerator DoTextureLoopAirtraffic()
-    {//2879
-        for (int i = 0; i < 200; i+=5)
+    {
+        for (int i = 0; i < 2879; i+=5)
         {
 
-
+            Resources.UnloadUnusedAssets();
             ChangeTextureOK = true;
-
-
             if (ChangeTextureOK == false)
             {
                 break;
@@ -103,12 +122,13 @@ public class TextureSwap : MonoBehaviour
                 print("Texture Name" + i);
 
 
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.1f);
             }
             else {
                 print("null Texture Name" + i);
                 yield return new WaitForSeconds(0.0f);
             }
+
 
         }
         revertStatusToNormal();
@@ -259,25 +279,29 @@ public class TextureSwap : MonoBehaviour
 
     private void ChangeRotationOfEarth(Vector3 rot) {
         GameObject EarthUpClose = GameObject.Find("EarthUpClose");
-
+        print("Earth up close found");
         transform.eulerAngles = rot;
     }
 
     private void SetEarthClouds(bool status) {
         GameObject EarthUpClose = GameObject.Find("EarthUpClose");
 
-        foreach (Transform child in transform)
+        foreach (Transform child in EarthUpClose.transform)
         {
             if (child.name.Equals("EarthClouds"))
             {
+                Debug.Log("set clouds to : " + status.ToString());
                 child.gameObject.SetActive(status);
+            } else {
+                Debug.Log("child name: : " + child.name);
+
             }
         }
     }
 
     private void SetEarthGlow(bool status) {
         GameObject EarthUpClose = GameObject.Find("EarthUpClose");
-        foreach (Transform child in transform)
+        foreach (Transform child in EarthUpClose.transform)
         {
             if (child.name.Equals("EarthGlow")) {
                 child.gameObject.SetActive(status);

@@ -8,14 +8,15 @@ using GalaxyExplorer;
 
 public class TextureSwap : MonoBehaviour
 {
-	private float Duration = 0.2f;
+	private float Duration = 0.1f;
 	private bool ChangeTextureOK = false;
 	private int PreageStartTime = 19000;
 	private int PreageTime = 0;
 	private int PreageCounter = 0;
 	private string BCAD = "BC";
-	public Text PreageText;
-    private Shader BlueMarbleShader;
+	//public Text PreageText;
+	public TextMesh PreageText2;
+	private Shader BlueMarbleShader;
 	private Shader AirTrafficShader;
 	private Shader DefaultEarthShader;
     private Texture defaultTexture;
@@ -29,7 +30,9 @@ public class TextureSwap : MonoBehaviour
 		BlueMarbleShader = Shader.Find("Custom/BlueMarbleShader");
 		DefaultEarthShader = Shader.Find("Planets/Earth");
         defaultTexture = rend.material.mainTexture;
-    }
+		//TextMesh PreageText2 = GameObject.Find("PreageText2").GetComponent<TextMesh>();
+		//PreageText2.text = "Bye World";
+	}
 
    
 
@@ -105,45 +108,6 @@ public class TextureSwap : MonoBehaviour
         ChangeTextureBack();
     }
 
-
- //   public IEnumerator DoTextureLoopPreageOld()
-	//{
-	//	changeTextureOK = true;
-	//	print(changeTextureOK);
-	//	for (int i = 1; i < textures.Length; i++)
-	//	{
-	//		if (changeTextureOK)
-	//		{
-	//			if (BCAD == "BC")
-	//			{
-	//				preageTime = preageStartTime - preageCounter;
-	//			}
-
-	//			if (preageTime == 0 && BCAD == "BC")
-	//			{
-	//				BCAD = "AD";
-	//				preageCounter = 0;
-	//			}
-
-	//			if (BCAD == "AD")
-	//			{
-	//				preageTime = preageTime + preageCounter;
-	//			}
-								
-	//			preageText.text = "Earth: " + preageTime + " " + BCAD;
-	//			rend.material.mainTexture = textures[i];
-	//			rend.material.SetFloat("_Blend", 2.0F);
-	//			print("Texture Name" + textures[i]);
-	//			yield return new WaitForSeconds(duration);
-	//			preageCounter = preageCounter + 500; 
-	//		}
-	//	}
-	//	ChangeTextureBack();
-	//	preageCounter = 0;
-	//	BCAD = "BC";
-	//	preageText.text = "";
-	//}
-
 	public IEnumerator DoTextureLoopPreage()
 	{
         ChangeTextureOK = true;
@@ -179,7 +143,8 @@ public class TextureSwap : MonoBehaviour
 		ChangeTextureBack();
 		PreageCounter = 0;
 		BCAD = "BC";
-		PreageText.text = "";
+		//PreageText.text = "";
+		PreageText2.text = "";
 	}
 
 
@@ -207,7 +172,8 @@ public class TextureSwap : MonoBehaviour
 		{
 			PreageTime = 0 + PreageCounter;
 		}
-		PreageText.text = "Earth: " + PreageTime + " " + BCAD;
+		//PreageText.text = "Earth: " + PreageTime + " " + BCAD;
+		PreageText2.text = "Earth: " + PreageTime + " " + BCAD;
 		if (BCAD == "BC" || (BCAD == "AD" && PreageTime < 2000))
 		{			
 			PreageCounter = PreageCounter + 500;
@@ -237,9 +203,10 @@ public class TextureSwap : MonoBehaviour
         StopAllCoroutines();
         revertStatusToNormal();
         PreageCounter = 0;
-        PreageText.text = "";
+        //PreageText.text = "";
+		PreageText2.text = "";
 
-    }
+	}
 
     private void revertStatusToNormal() {
 

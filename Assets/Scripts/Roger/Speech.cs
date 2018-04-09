@@ -23,14 +23,18 @@ public class Speech : MonoBehaviour
 		keywords.Add("Preage", () =>
         {
             // Call the xxxx method on the earth object.
+            ChangeTexture.ChangeTextureBack();
+
             PreageCalled();
             ChangeTexture.ChangeTextureForPreage();
         });
 
 		keywords.Add("BlueMarble", () =>
 		{
-			// Call the xxxx method on the earth object.
-			PreageCalled();
+            // Call the xxxx method on the earth object.
+            ChangeTexture.ChangeTextureBack();
+
+            PreageCalled();
 			ChangeTexture.ChangeTextureForPreage();
 		});
 
@@ -38,6 +42,7 @@ public class Speech : MonoBehaviour
         keywords.Add("two", () =>
         {
             // Call the xxxx method on the earth object.
+            ChangeTexture.ChangeTextureBack();
             PreageCalled();
             ChangeTexture.ChangeTextureForPreage();
         });
@@ -45,6 +50,7 @@ public class Speech : MonoBehaviour
         keywords.Add("stop", () =>
         {
             // Call the xxxx method on the earth object.
+            ChangeTexture.ChangeTextureBack();
             ChangedTextureBack();
             ChangeTexture.ChangeTextureBack();
         });
@@ -52,6 +58,7 @@ public class Speech : MonoBehaviour
         keywords.Add("air", () =>
         {
             // Call the xxxx method on the earth object.
+            ChangeTexture.ChangeTextureBack();
             AirTrafficCalled();
             ChangeTexture.ChangeTextureForAirTraffic();
 
@@ -60,6 +67,7 @@ public class Speech : MonoBehaviour
         keywords.Add("traffic", () =>
         {
             // Call the xxxx method on the earth object.
+            ChangeTexture.ChangeTextureBack();
             AirTrafficCalled();
             ChangeTexture.ChangeTextureForAirTraffic();
         });
@@ -67,82 +75,23 @@ public class Speech : MonoBehaviour
         keywords.Add("plane", () =>
         {
             // Call the xxxx method on the earth object.
+            ChangeTexture.ChangeTextureBack();
             AirTrafficCalled();
             ChangeTexture.ChangeTextureForAirTraffic();
         });
 
-		Action nowFunction = () =>
-		{
-			// Call the xxxx method on the earth object.
-			ActualTime();
-			if (OrbitUpdater != null)
-			{
-				OrbitUpdater.ChangePlanetPositionToNow();
-			}
-			else
-			{
-				OrbitUpdater[] orbitUpdaters = GetComponentsInChildren<OrbitUpdater>();
-				foreach (OrbitUpdater orbitUpdater in orbitUpdaters)
-				{
-					orbitUpdater.ChangePlanetPositionToNow();
-				}
-			}
-
-			if (AsteroidRing != null)
-			{
-				AsteroidRing.StopAstroidBelt();
-			}
-			else
-			{
-				AsteroidRing[] asteroidRings = GetComponentsInChildren<AsteroidRing>();
-				foreach (AsteroidRing asteroidRing in asteroidRings)
-				{
-					asteroidRing.StopAstroidBelt();
-				}
-			}
-		};
-
-		keywords.Add("now", nowFunction);
-
-		keywords.Add("currentTime", nowFunction);
-
-		keywords.Add("go", () =>
-		{
-			// Call the xxxx method on the earth object.
-			Go();
-			if (OrbitUpdater != null)
-			{
-				OrbitUpdater.RestartSolarSystemSimulation();
-			}
-			else
-			{
-				OrbitUpdater[] orbitUpdaters = GetComponentsInChildren<OrbitUpdater>();
-				foreach (OrbitUpdater orbitUpdater in orbitUpdaters)
-				{
-					orbitUpdater.RestartSolarSystemSimulation();
-				}
-			}
-
-			if (AsteroidRing != null)
-			{
-				AsteroidRing.RestartAstroidBelt();
-			}
-			else
-			{
-				AsteroidRing[] asteroidRings = GetComponentsInChildren<AsteroidRing>();
-				foreach(AsteroidRing asteroidRing in asteroidRings)
-				{
-					asteroidRing.RestartAstroidBelt();
-				}				
-			}
-		});
 
         keywords.Add("one", () =>
         {
             // Call the xxxx method on the earth object.
+            ChangeTexture.ChangeTextureBack();
+
             AirTrafficCalled();
             ChangeTexture.ChangeTextureForAirTraffic();
         });
+
+		
+
 
 		// Tell the KeywordRecognizer about our keywords.
 		KeywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
@@ -167,15 +116,6 @@ public class Speech : MonoBehaviour
         print("Texture is back to normal");
     }
 
-	void ActualTime()
-	{
-		print("Changed Planet Position to actual time");
-	}
-
-	void Go()
-	{
-		print("SolarSystemView changed back to normal");
-	}
 
 	private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {

@@ -31,37 +31,7 @@ public class TextureSwap : MonoBehaviour
         defaultTexture = rend.material.mainTexture;
     }
 
-    public void prepareForTextureChange(string name) {
-
-        switch (name.ToLower())
-        {
-            case "preage":
-
-                break;
-            case "airtraffic":
-                break;
-            default:
-                print("unknwon textureSwap");
-                break;
-        }
-
-    }
-
-/**
-    private void changeTexture(TextureSwapSpezifikation spez) {
-        ChangeTextureOK = false;
-        Shader specialShader = spez.GetSpecialShader();
-        if (specialShader != null)
-        {
-            rend.material.shader = specialShader;
-        }
-
-        StartCoroutine(spez.TextureLoop());
-
-
-    }
-    **/
-
+   
 
     public void ChangeTextureForPreage()
 	{
@@ -118,7 +88,7 @@ public class TextureSwap : MonoBehaviour
             if (texture != null)
             {
                 rend.material.mainTexture = texture;
-                //rend.material.SetFloat("_Blend", 2.0F);
+
                 print("Texture Name" + i);
 
 
@@ -212,6 +182,13 @@ public class TextureSwap : MonoBehaviour
 		PreageText.text = "";
 	}
 
+
+    private void cleanForNextTextureLoop() {
+
+        revertStatusToNormal();
+    }
+
+
 	public void SetPreageText()
 	{
 		if (BCAD == "BC")
@@ -241,10 +218,14 @@ public class TextureSwap : MonoBehaviour
 		}
 	}
 
+    /*
+     * Reverts the status earth back to default. Call this before starting a new textureloop
+     * 
+     */
+
 	public void ChangeTextureBack()
     {
 		ChangeTextureOK = false;
-		//Texture texture = Resources.Load("Textures/EarthDiffuseSpecular") as Texture;
 		rend.material.mainTexture = defaultTexture;
         if (DefaultEarthShader != null)
         {
@@ -253,6 +234,11 @@ public class TextureSwap : MonoBehaviour
         else {
             print("Defaultshader is null");
         }
+        StopAllCoroutines();
+        revertStatusToNormal();
+        PreageCounter = 0;
+        PreageText.text = "";
+
     }
 
     private void revertStatusToNormal() {

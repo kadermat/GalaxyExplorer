@@ -7,31 +7,34 @@ public class AirTraffic : TextureSwapSpezifikation {
 
     private GameObject source;
 
+    private readonly Shader specialShader;
+    private bool isRunning = false;
+
     public AirTraffic(GameObject source) {
+        if (source == null)
+        {
+            Debug.Log("source is null");
+        }
+
         this.source = source;
+
+        specialShader = Shader.Find("Custom/AirTrafficShader");
     }
 
-	public IEnumerator PictureEnumerator()
-	{
-		return null;
-	}
-
-
-	public Shader GetSpecialShader() {
-        return Shader.Find("Custom/AirTrafficShader");
-
+    public bool isSpezRunning() {
+        return isRunning;
     }
+
+
+
     public IEnumerator TextureLoop()
     {
-        bool ChangeTextureOK = false;
-        {//2879
-            for (int i = 0; i < 200; i += 5)
+        
+        Debug.Log("starting TextureLoop");
+        isRunning = true;
+        //2879
+            for (int i = 0; i < 2879; i += 5)
             {
-                ChangeTextureOK = true;
-                if (ChangeTextureOK == false)
-                {
-                    break;
-                }
 
                 string CounterAsString = i.ToString();
                 while (CounterAsString.Length < 5)
@@ -54,10 +57,12 @@ public class AirTraffic : TextureSwapSpezifikation {
                     yield return new WaitForSeconds(0.0f);
                 }
             }
-        }
+        isRunning = false;
+        
     }
 
     public void Preparation() {
+        setEarthSpecialShader();
         SetEarthSpinningStatus(false);
         ChangeRotationOfEarth(Vector3.zero);
         SetEarthClouds(false);
@@ -65,11 +70,16 @@ public class AirTraffic : TextureSwapSpezifikation {
     }
 
     public void Postparation() {
-
         SetEarthSpinningStatus(true);
         ChangeRotationOfEarth(new Vector3(-90.0f, 0.0f, 0.0f));
         SetEarthClouds(true);
         SetEarthGlow(true);
+    }
+
+
+
+    private void setEarthSpecialShader() {
+        source.GetComponent<Renderer>().material.shader = specialShader;
     }
 
 
@@ -81,8 +91,6 @@ public class AirTraffic : TextureSwapSpezifikation {
 
     private void ChangeRotationOfEarth(Vector3 rot)
     {
-        GameObject EarthUpClose = GameObject.Find("EarthUpClose");
-
         source.transform.eulerAngles = rot;
     }
 
@@ -90,8 +98,9 @@ public class AirTraffic : TextureSwapSpezifikation {
     {
         GameObject EarthUpClose = GameObject.Find("EarthUpClose");
 
-        foreach (Transform child in source.transform)
+        foreach (Transform child in EarthUpClose.transform)
         {
+            Debug.Log("childs: " + child.name);
             if (child.name.Equals("EarthClouds"))
             {
                 child.gameObject.SetActive(status);
@@ -102,8 +111,9 @@ public class AirTraffic : TextureSwapSpezifikation {
     private void SetEarthGlow(bool status)
     {
         GameObject EarthUpClose = GameObject.Find("EarthUpClose");
-        foreach (Transform child in source.transform)
+        foreach (Transform child in EarthUpClose.transform)
         {
+
             if (child.name.Equals("EarthGlow"))
             {
                 child.gameObject.SetActive(status);

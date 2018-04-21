@@ -72,7 +72,7 @@ public class TextureSwap : MonoBehaviour
 
     public IEnumerator DoTextureLoopAirtraffic()
     {
-        for (int i = 0; i < 2879; i+=5)
+        for (int i = 0; i < 200; i+=5)
         {
 
             Resources.UnloadUnusedAssets();

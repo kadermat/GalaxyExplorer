@@ -12,6 +12,7 @@ public class Speech : MonoBehaviour
 	AsteroidRing AsteroidRing;
 	KeywordRecognizer KeywordRecognizer = null;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
+    private TextureSwapManager manager;
 
     // Use this for initialization
     void Start()
@@ -19,75 +20,79 @@ public class Speech : MonoBehaviour
         ChangeTexture = GetComponent<TextureSwap>();
 		OrbitUpdater = GetComponent<OrbitUpdater>();
 		AsteroidRing = GetComponent<AsteroidRing>();
+        manager = GetComponent<TextureSwapManager>();
 
 		keywords.Add("Preage", () =>
         {
             // Call the xxxx method on the earth object.
-            ChangeTexture.ChangeTextureBack();
-
+            // ChangeTexture.ChangeTextureBack();
+            manager.startTextureSwap(new BlueMarble(GameObject.Find("Earth")));
             PreageCalled();
-            ChangeTexture.ChangeTextureForPreage();
+            //ChangeTexture.ChangeTextureForPreage();
         });
 
 		keywords.Add("BlueMarble", () =>
 		{
             // Call the xxxx method on the earth object.
-            ChangeTexture.ChangeTextureBack();
-
+            // ChangeTexture.ChangeTextureBack();
+            manager.startTextureSwap(new BlueMarble(GameObject.Find("Earth")));
             PreageCalled();
-			ChangeTexture.ChangeTextureForPreage();
-		});
+            //ChangeTexture.ChangeTextureForPreage();
+        });
 
 
         keywords.Add("two", () =>
         {
             // Call the xxxx method on the earth object.
-            ChangeTexture.ChangeTextureBack();
+            // ChangeTexture.ChangeTextureBack();
+            manager.startTextureSwap(new BlueMarble(GameObject.Find("Earth")));
             PreageCalled();
-            ChangeTexture.ChangeTextureForPreage();
+            //ChangeTexture.ChangeTextureForPreage();
         });
 
         keywords.Add("stop", () =>
         {
             // Call the xxxx method on the earth object.
-            ChangeTexture.ChangeTextureBack();
-            ChangedTextureBack();
-            ChangeTexture.ChangeTextureBack();
+            //ChangeTexture.ChangeTextureBack();
+            manager.ChangeTextureBack();
+            //ChangeTexture.ChangeTextureBack();
         });
 
         keywords.Add("air", () =>
         {
             // Call the xxxx method on the earth object.
-            ChangeTexture.ChangeTextureBack();
+            // ChangeTexture.ChangeTextureBack();
             AirTrafficCalled();
-            ChangeTexture.ChangeTextureForAirTraffic();
-
+            //ChangeTexture.ChangeTextureForAirTraffic();
+            manager.startTextureSwap(new AirTraffic(GameObject.Find("Earth")));
         });
 
         keywords.Add("traffic", () =>
         {
             // Call the xxxx method on the earth object.
-            ChangeTexture.ChangeTextureBack();
+            // ChangeTexture.ChangeTextureBack();
             AirTrafficCalled();
-            ChangeTexture.ChangeTextureForAirTraffic();
+            //ChangeTexture.ChangeTextureForAirTraffic();
+            manager.startTextureSwap(new AirTraffic(GameObject.Find("Earth")));
         });
 
         keywords.Add("plane", () =>
         {
             // Call the xxxx method on the earth object.
-            ChangeTexture.ChangeTextureBack();
+            // ChangeTexture.ChangeTextureBack();
             AirTrafficCalled();
-            ChangeTexture.ChangeTextureForAirTraffic();
+            //ChangeTexture.ChangeTextureForAirTraffic();
+            manager.startTextureSwap(new AirTraffic(GameObject.Find("Earth")));
         });
 
 
         keywords.Add("one", () =>
         {
             // Call the xxxx method on the earth object.
-            ChangeTexture.ChangeTextureBack();
-
+            // ChangeTexture.ChangeTextureBack();
             AirTrafficCalled();
-            ChangeTexture.ChangeTextureForAirTraffic();
+            //ChangeTexture.ChangeTextureForAirTraffic();
+            manager.startTextureSwap(new AirTraffic(GameObject.Find("Earth")));
         });
 
 		

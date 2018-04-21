@@ -42,8 +42,7 @@ public class BlueMarble : TextureSwapSpezifikation
         Renderer rend = source.GetComponent<Renderer>();
         for (int i = 0; i < 68; i += 1)
         {
-
-
+            Resources.UnloadUnusedAssets();
 
             SetPreageText();
 

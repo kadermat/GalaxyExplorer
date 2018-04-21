@@ -35,6 +35,8 @@ public class AirTraffic : TextureSwapSpezifikation {
         //2879
             for (int i = 0; i < 2879; i += 5)
             {
+                Resources.UnloadUnusedAssets();
+
 
                 string CounterAsString = i.ToString();
                 while (CounterAsString.Length < 5)

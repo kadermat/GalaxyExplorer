@@ -6,15 +6,14 @@ public interface TextureSwapSpezifikation
 {
 
     /***
- * Actions needed before executing the texture swap to prepare for correct execution.
- * z.b. Disable Clouds for AirTraffic
- * 
- ***/
+     * Texture loop over a series of pictures
+     * 
+     ***/
     IEnumerator TextureLoop();
 
     /***
      * Actions needed before executing the texture swap to prepare for correct execution.
-     * z.b. Disable Clouds for AirTraffic
+     * z.b. apply special shader
      * 
      ***/
     void Preparation();

@@ -273,22 +273,29 @@ namespace GalaxyExplorer
             }
 
             float y = 0.0f;
+			float x = 0.0f;
 
-            switch (type)
+			switch (type)
             {
                 case ToolType.Pan:
                     y = direction.y;
+					//neu
+					x = direction.x;
 
-                    contentToManipulate.transform.localPosition = new Vector3(contentToManipulate.transform.localPosition.x, contentToManipulate.transform.localPosition.y + (Time.deltaTime * y * PanSpeed), contentToManipulate.transform.localPosition.z);
+					contentToManipulate.transform.localPosition = new Vector3(contentToManipulate.transform.localPosition.x /*neu*/ + (Time.deltaTime * x * PanSpeed), contentToManipulate.transform.localPosition.y + (Time.deltaTime * y * PanSpeed), contentToManipulate.transform.localPosition.z);
                     break;
 
                 case ToolType.Rotate:
                     y = direction.y;
+					//neu
+					x = direction.x;
 
-                    if (kind == InteractionSourceKind.Hand)
+					if (kind == InteractionSourceKind.Hand)
                     {
                         y = -y;
-                    }
+						//neu
+						x = -x;
+					}
 
                     Vector3 rotationOrigin;
                     if (kind == InteractionSourceKind.Controller &&
@@ -306,7 +313,10 @@ namespace GalaxyExplorer
 
                     var targetUp = Quaternion.AngleAxis(Mathf.Sign(y) * MaxRotationAngle, right) * Vector3.up;
 
-                    var currentRotationSpeed = kind == InteractionSourceKind.Hand ? RotationSpeed : ClickerRotationSpeed;
+					//neu
+					var targetRight = Quaternion.AngleAxis(Mathf.Sign(x) * MaxRotationAngle, right) * Vector3.right;
+
+					var currentRotationSpeed = kind == InteractionSourceKind.Hand ? RotationSpeed : ClickerRotationSpeed;
 
                     // use the hero view to determine limits on rotation; however, move the content by the
                     // change in rotation, so we are consistently moving the same content/object everywhere
@@ -315,11 +325,20 @@ namespace GalaxyExplorer
                     var desiredUp = Vector3.Slerp(heroView.transform.up, targetUp, Mathf.Clamp01(Time.deltaTime * Mathf.Abs(y) * currentRotationSpeed));
                     var upToNewUp = Quaternion.FromToRotation(heroView.transform.up, desiredUp);
 
-                    contentToManipulate.transform.rotation =
+					//neu
+					var desiredRight = Vector3.Slerp(heroView.transform.right, targetRight, Mathf.Clamp01(Time.deltaTime * Mathf.Abs(x) * currentRotationSpeed));
+					var rightToNewRight = Quaternion.FromToRotation(heroView.transform.right, desiredRight);
+
+					contentToManipulate.transform.rotation =
                         Quaternion.LookRotation(upToNewUp * heroView.transform.forward, desiredUp) *
                         Quaternion.Inverse(heroView.transform.rotation) * // hero view rotation delta
                         contentToManipulate.transform.rotation;
-                    break;
+					//neu
+					contentToManipulate.transform.rotation =
+						Quaternion.LookRotation(rightToNewRight * heroView.transform.forward, desiredRight) *
+						Quaternion.Inverse(heroView.transform.rotation) * // hero view rotation delta
+						contentToManipulate.transform.rotation;
+					break;
 
                 case ToolType.Zoom:
                     float smallestScale = ToolManager.Instance.TargetMinZoomSize;

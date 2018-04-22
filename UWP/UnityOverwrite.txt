@@ -5,7 +5,7 @@
 # Write a line equal to 'overwrite-all' (without quotes) to overwrite everything (preserved accross builds)
 # Write a line equal to 'keep-all' (without quotes) to keep files regardless their modification (preserved accross builds)
 # Default behavior is to never overwrite files
-Galaxy Explorer.sln: modified
+Galaxy Explorer.sln: 101976D2B43088A2631086A697758B87
 project.json: modified
 Galaxy Explorer\App.xaml: modified
 Galaxy Explorer\App.xaml.cs: modified

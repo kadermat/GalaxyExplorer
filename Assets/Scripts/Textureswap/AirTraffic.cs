@@ -32,7 +32,7 @@ public class AirTraffic : TextureSwapSpezifikation {
         
         Debug.Log("starting TextureLoop");
         isRunning = true;
-        //2879
+        //2879 in Total
             for (int i = 0; i < 2879; i += 5)
             {
                 Resources.UnloadUnusedAssets();

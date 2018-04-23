@@ -288,13 +288,13 @@ namespace GalaxyExplorer
                 case ToolType.Rotate:
                     y = direction.y;
 					//neu
-					x = direction.x;
+					//x = direction.x;
 
 					if (kind == InteractionSourceKind.Hand)
                     {
                         y = -y;
 						//neu
-						x = -x;
+					//	x = -x;
 					}
 
                     Vector3 rotationOrigin;
@@ -314,7 +314,7 @@ namespace GalaxyExplorer
                     var targetUp = Quaternion.AngleAxis(Mathf.Sign(y) * MaxRotationAngle, right) * Vector3.up;
 
 					//neu
-					var targetRight = Quaternion.AngleAxis(Mathf.Sign(x) * MaxRotationAngle, right) * Vector3.right;
+					//var targetRight = Quaternion.AngleAxis(Mathf.Sign(x) * MaxRotationAngle, right) * Vector3.right;
 
 					var currentRotationSpeed = kind == InteractionSourceKind.Hand ? RotationSpeed : ClickerRotationSpeed;
 
@@ -326,18 +326,18 @@ namespace GalaxyExplorer
                     var upToNewUp = Quaternion.FromToRotation(heroView.transform.up, desiredUp);
 
 					//neu
-					var desiredRight = Vector3.Slerp(heroView.transform.right, targetRight, Mathf.Clamp01(Time.deltaTime * Mathf.Abs(x) * currentRotationSpeed));
-					var rightToNewRight = Quaternion.FromToRotation(heroView.transform.right, desiredRight);
+					//var desiredRight = Vector3.Slerp(heroView.transform.right, targetRight, Mathf.Clamp01(Time.deltaTime * Mathf.Abs(x) * currentRotationSpeed));
+					//var rightToNewRight = Quaternion.FromToRotation(heroView.transform.right, desiredRight);
 
 					contentToManipulate.transform.rotation =
                         Quaternion.LookRotation(upToNewUp * heroView.transform.forward, desiredUp) *
                         Quaternion.Inverse(heroView.transform.rotation) * // hero view rotation delta
                         contentToManipulate.transform.rotation;
 					//neu
-					contentToManipulate.transform.rotation =
-						Quaternion.LookRotation(rightToNewRight * heroView.transform.forward, desiredRight) *
-						Quaternion.Inverse(heroView.transform.rotation) * // hero view rotation delta
-						contentToManipulate.transform.rotation;
+					//contentToManipulate.transform.rotation =
+					//	Quaternion.LookRotation(rightToNewRight * heroView.transform.forward, desiredRight) *
+					//	Quaternion.Inverse(heroView.transform.rotation) * // hero view rotation delta
+					//	contentToManipulate.transform.rotation;
 					break;
 
                 case ToolType.Zoom:

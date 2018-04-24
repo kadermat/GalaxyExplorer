@@ -24,80 +24,53 @@ public class Speech : MonoBehaviour
 
 		keywords.Add("Preage", () =>
         {
-            // Call the xxxx method on the earth object.
-            // ChangeTexture.ChangeTextureBack();
             manager.startTextureSwap(new BlueMarble(GameObject.Find("Earth")));
             PreageCalled();
-            //ChangeTexture.ChangeTextureForPreage();
         });
 
 		keywords.Add("BlueMarble", () =>
 		{
-            // Call the xxxx method on the earth object.
-            // ChangeTexture.ChangeTextureBack();
             manager.startTextureSwap(new BlueMarble(GameObject.Find("Earth")));
             PreageCalled();
-            //ChangeTexture.ChangeTextureForPreage();
         });
 
 
         keywords.Add("two", () =>
         {
-            // Call the xxxx method on the earth object.
-            // ChangeTexture.ChangeTextureBack();
             manager.startTextureSwap(new BlueMarble(GameObject.Find("Earth")));
             PreageCalled();
-            //ChangeTexture.ChangeTextureForPreage();
         });
 
         keywords.Add("stop", () =>
         {
-            // Call the xxxx method on the earth object.
-            //ChangeTexture.ChangeTextureBack();
             manager.ChangeTextureBack();
-            //ChangeTexture.ChangeTextureBack();
         });
 
         keywords.Add("air", () =>
         {
-            // Call the xxxx method on the earth object.
-            // ChangeTexture.ChangeTextureBack();
             AirTrafficCalled();
-            //ChangeTexture.ChangeTextureForAirTraffic();
             manager.startTextureSwap(new AirTraffic(GameObject.Find("Earth")));
         });
 
         keywords.Add("traffic", () =>
         {
-            // Call the xxxx method on the earth object.
-            // ChangeTexture.ChangeTextureBack();
             AirTrafficCalled();
-            //ChangeTexture.ChangeTextureForAirTraffic();
             manager.startTextureSwap(new AirTraffic(GameObject.Find("Earth")));
         });
 
         keywords.Add("plane", () =>
         {
-            // Call the xxxx method on the earth object.
-            // ChangeTexture.ChangeTextureBack();
             AirTrafficCalled();
-            //ChangeTexture.ChangeTextureForAirTraffic();
             manager.startTextureSwap(new AirTraffic(GameObject.Find("Earth")));
         });
 
-
         keywords.Add("one", () =>
         {
-            // Call the xxxx method on the earth object.
-            // ChangeTexture.ChangeTextureBack();
             AirTrafficCalled();
-            //ChangeTexture.ChangeTextureForAirTraffic();
             manager.startTextureSwap(new AirTraffic(GameObject.Find("Earth")));
         });
 
 		
-
-
 		// Tell the KeywordRecognizer about our keywords.
 		KeywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray(), ConfidenceLevel.Low);
 

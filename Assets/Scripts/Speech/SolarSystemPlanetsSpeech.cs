@@ -7,7 +7,7 @@ using UnityEngine.Windows.Speech;
 
 public class SolarSystemPlanetsSpeech : MonoBehaviour {
 
-    OrbitUpdater aobitUpdater;
+    OrbitUpdater aorbitUpdater;
     AsteroidRing asteroidRing;
     KeywordRecognizer KeywordRecognizer = null;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
@@ -15,16 +15,20 @@ public class SolarSystemPlanetsSpeech : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        aobitUpdater = GetComponent<OrbitUpdater>();
+        aorbitUpdater = GetComponent<OrbitUpdater>();
         asteroidRing = GetComponent<AsteroidRing>();
 
-        Action nowFunction = () =>
+		/// <summary>
+		/// This nowFunction checks if there is a orbitUpdater. If there is one the ChangePlanetPositionToNow() is called on this aorbitUpdater.
+		/// When there isn't aorbitUpdater it checks all Children of it and call the method ChangePlanetPositionToNow() on every Children.
+		/// Same procedure with astroidRings and StopAstroidBelt() method.
+		/// </summary>
+		Action nowFunction = () =>
         {
-            // Call the xxxx method on the earth object.
             ActualTime();
-            if (aobitUpdater != null)
+            if (aorbitUpdater != null)
             {
-                aobitUpdater.ChangePlanetPositionToNow();
+                aorbitUpdater.ChangePlanetPositionToNow();
             }
             else
             {
@@ -48,14 +52,17 @@ public class SolarSystemPlanetsSpeech : MonoBehaviour {
                 }
             }
         };
-
-        Action GoFunction = () =>
+		/// <summary>
+		/// This GoFunction checks if there is a orbitUpdater. If there is one the RestartSolarSystemSimulation() is called on this aorbitUpdater.
+		/// When there isn't aorbitUpdater it checks all Children of it and call the method RestartSolarSystemSimulation() on every Children.
+		/// Same procedure with astroidRings and RestartAstroidBelt() method.
+		/// </summary>
+		Action GoFunction = () =>
         {
-            // Call the xxxx method on the earth object.
             Go();
-            if (aobitUpdater != null)
+            if (aorbitUpdater != null)
             {
-                aobitUpdater.RestartSolarSystemSimulation();
+                aorbitUpdater.RestartSolarSystemSimulation();
             }
             else
             {
@@ -105,11 +112,6 @@ public class SolarSystemPlanetsSpeech : MonoBehaviour {
         KeywordRecognizer.Start();
     }
 
-
-
-
-
-
     void ActualTime()
     {
         print("Changed Planet Position to actual time");
@@ -125,8 +127,8 @@ public class SolarSystemPlanetsSpeech : MonoBehaviour {
         System.Action keywordAction;
         if (keywords.TryGetValue(args.text, out keywordAction))
         {
-            if (aobitUpdater == null) {
-                aobitUpdater = GetComponent<OrbitUpdater>();
+            if (aorbitUpdater == null) {
+                aorbitUpdater = GetComponent<OrbitUpdater>();
 
             }
 

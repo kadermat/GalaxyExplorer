@@ -30,13 +30,13 @@ namespace GalaxyExplorer
         private Dictionary<string, float> selectedMaterialDefaults = new Dictionary<string, float>();
         public ToolType type;
         public float PanSpeed = 0.25f;
-        public float RotationSpeed = 30.0f;
+        public float RotationSpeed = 60.0f;
         public float ScaleSpeed = 1.0f;
         public float PanControllerSpeed = 0.75f;
         public float PanHandSpeed = 2.0f;
 
-        public float MaxRotationAngle = 40;
-        public float ClickerRotationSpeed = .1f;
+        public float MaxRotationAngle = 90;
+        public float ClickerRotationSpeed = 0.1f;
         public float XamlRotationSpeed = 1f;
 
         private float scalePercentValue = 0.6f;

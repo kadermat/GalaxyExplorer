@@ -72,7 +72,7 @@ public class Speech : MonoBehaviour
 
 		
 		// Tell the KeywordRecognizer about our keywords.
-		KeywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray(), ConfidenceLevel.Low);
+		KeywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray(), ConfidenceLevel.Medium);
 
         // Register a callback for the KeywordRecognizer and start recognizing!
         KeywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;

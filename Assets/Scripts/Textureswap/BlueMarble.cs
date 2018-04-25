@@ -13,7 +13,7 @@ public class BlueMarble : TextureSwapSpezifikation
     private int PreageStartTime = 19000;
     private int PreageTime = 0;
     private int PreageCounter = 0;
-    public TextMesh PreageText2;
+    public TextMesh PreageText;
     private string BCAD = "BC";
 
     public BlueMarble(GameObject source)
@@ -26,7 +26,7 @@ public class BlueMarble : TextureSwapSpezifikation
         this.source = source;
 
         specialShader = Shader.Find("Custom/BlueMarbleShader");
-        PreageText2 = GameObject.Find("PreageText2").GetComponent<TextMesh>();
+        PreageText = GameObject.Find("PreageText").GetComponent<TextMesh>();
 
 }
 
@@ -74,7 +74,7 @@ public class BlueMarble : TextureSwapSpezifikation
     {
         PreageCounter = 0;
         BCAD = "BC";
-        PreageText2.text = "";
+        PreageText.text = "";
 
     }
 
@@ -97,7 +97,7 @@ public class BlueMarble : TextureSwapSpezifikation
             PreageTime = 0 + PreageCounter;
         }
         //PreageText.text = "Earth: " + PreageTime + " " + BCAD;
-        PreageText2.text = "Earth: " + PreageTime + " " + BCAD;
+        PreageText.text = "Earth: " + PreageTime + " " + BCAD;
         if (BCAD == "BC" || (BCAD == "AD" && PreageTime < 2000))
         {
             PreageCounter = PreageCounter + 500;

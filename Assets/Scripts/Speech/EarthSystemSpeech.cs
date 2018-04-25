@@ -5,11 +5,8 @@ using UnityEngine.Windows.Speech;
 using System;
 using GalaxyExplorer;
 
-public class Speech : MonoBehaviour
+public class EarthSystemSpeech : MonoBehaviour
 {
-    TextureSwap ChangeTexture;
-	OrbitUpdater OrbitUpdater;
-	AsteroidRing AsteroidRing;
 	KeywordRecognizer KeywordRecognizer = null;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
     private TextureSwapManager manager;
@@ -17,9 +14,6 @@ public class Speech : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        ChangeTexture = GetComponent<TextureSwap>();
-		OrbitUpdater = GetComponent<OrbitUpdater>();
-		AsteroidRing = GetComponent<AsteroidRing>();
         manager = GetComponent<TextureSwapManager>();
 
 		keywords.Add("Preage", () =>

@@ -88,7 +88,6 @@ public class SolarSystemPlanetsSpeech : MonoBehaviour {
         };
 
 
-        keywords.Add("n", nowFunction);
 
         keywords.Add("freeze", nowFunction);
 

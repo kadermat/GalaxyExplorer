@@ -3508,7 +3508,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2079789406}
-  m_Text: "Venus\n    mass: 0.11 x earth\n    radius: 0.53 x earth\n    gravity: 0.38g\n
+  m_Text: "Mars\n    mass: 0.11 x earth\n    radius: 0.53 x earth\n    gravity: 0.38g\n
     \   discovery: 1659, Christian Huygens\n    first visit: 1964 Mariner 4"
   m_OffsetZ: 0
   m_CharacterSize: 1

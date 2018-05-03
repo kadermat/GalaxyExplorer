@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Handles the Texture swap of GameObjects. Needs to be placed on a GameObject whose Textures should be swapped
+/// </summary>
 public class TextureSwapManager : MonoBehaviour {
 
-    // Use this for initialization
+    
 
     private TextureSwapSpezifikation spezifikationRunning;
     private Shader DefaultEarthShader;
@@ -37,7 +39,10 @@ public class TextureSwapManager : MonoBehaviour {
 
 
 
-
+    /// <summary>
+    /// Starts a Texture swap with a given spezifikation. If another spezfikation is already running, it gets terminated and the new spezfikation starts
+    /// </summary>
+    /// <param name="spezifikation"> Spezification of the swap to occour.</param>
     public void  startTextureSwap(TextureSwapSpezifikation spezifikation) {
         if (spezifikation == null) {
             print("spez is null");
@@ -64,6 +69,9 @@ public class TextureSwapManager : MonoBehaviour {
         spezifikationRunning = spezifikation;
     }
 
+    /// <summary>
+    /// Changes the Texture of the GameObject back to the default Earth Shader. If a TextureSwapSpezfikation is running, it gets terminated its postparation() method gets called to restore the default values.
+    /// </summary>
     public void ChangeTextureBack()
     {
         Renderer rend = gameObject.GetComponent<Renderer>();

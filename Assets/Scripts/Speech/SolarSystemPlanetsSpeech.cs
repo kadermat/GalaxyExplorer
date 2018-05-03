@@ -12,7 +12,6 @@ public class SolarSystemPlanetsSpeech : MonoBehaviour {
     KeywordRecognizer KeywordRecognizer = null;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
 
-    // Use this for initialization
     void Start()
     {
         aorbitUpdater = GetComponent<OrbitUpdater>();
@@ -87,8 +86,6 @@ public class SolarSystemPlanetsSpeech : MonoBehaviour {
             }
         };
 
-
-
         keywords.Add("freeze", nowFunction);
 
         keywords.Add("now", nowFunction);
@@ -98,10 +95,6 @@ public class SolarSystemPlanetsSpeech : MonoBehaviour {
         keywords.Add("go", GoFunction);
 
         keywords.Add("unfreeze", GoFunction);
-
-
-
-
 
         // Tell the KeywordRecognizer about our keywords.
         KeywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray(), ConfidenceLevel.Medium);

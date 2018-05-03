@@ -11,7 +11,6 @@ public class EarthSystemSpeech : MonoBehaviour
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
     private TextureSwapManager manager;
 
-    // Use this for initialization
     void Start()
     {
         manager = GetComponent<TextureSwapManager>();
@@ -63,8 +62,7 @@ public class EarthSystemSpeech : MonoBehaviour
             AirTrafficCalled();
             manager.startTextureSwap(new AirTraffic(GameObject.Find("Earth")));
         });
-
-		
+	
 		// Tell the KeywordRecognizer about our keywords.
 		KeywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray(), ConfidenceLevel.Medium);
 

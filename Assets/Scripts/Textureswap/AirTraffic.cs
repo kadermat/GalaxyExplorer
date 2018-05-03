@@ -47,7 +47,6 @@ public class AirTraffic : TextureSwapSpezifikation {
                 if (texture != null)
                 {
                     source.GetComponent<Renderer>().material.mainTexture = texture;
-                    //rend.material.SetFloat("_Blend", 2.0F);
                     Debug.Log("Texture Name" + i);
 
 

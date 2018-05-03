@@ -96,7 +96,6 @@ public class BlueMarble : TextureSwapSpezifikation
         {
             PreageTime = 0 + PreageCounter;
         }
-        //PreageText.text = "Earth: " + PreageTime + " " + BCAD;
         PreageText.text = "Earth: " + PreageTime + " " + BCAD;
         if (BCAD == "BC" || (BCAD == "AD" && PreageTime < 2000))
         {

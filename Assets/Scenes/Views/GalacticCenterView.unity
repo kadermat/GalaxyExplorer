@@ -559,7 +559,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 755498082}
-  m_Text: "Sagitarius A*\n    desc: Compex radio Source\n    distance: est. 25800
+  m_Text: "Sagitarius A*\n    desc: Compex radio Source\n    distance: est. 26'000
     LJ\n    discovery: 1974 Bruce Balick and Rober Brown\n"
   m_OffsetZ: 0
   m_CharacterSize: 1
@@ -1080,7 +1080,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1348129025}
-  m_Text: "S102\n    desc: G-Type main squence star\n    distance: est. 25900 LJ\n"
+  m_Text: "S102\n    desc: G-Type main squence star\n\n"
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1367,7 +1367,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2111660769}
-  m_Text: "S2\n    desc: G-Type main squence star\n    distance: est. 25900 LJ\n"
+  m_Text: "S2\n    desc: G-Type main squence star\n\n"
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1

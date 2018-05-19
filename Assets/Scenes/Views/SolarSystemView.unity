@@ -2755,7 +2755,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1710627996}
-  m_Text: "Earth\n    mass: 6 * 10^24 kg\n    radius: 6371 km\n    mean temp: 14.9\xB0C"
+  m_Text: "Earth\n    mass: 6 * 10^24 kg\n    radius: 6371 km\n    gravity: 9.81 m/s^2"
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -3115,7 +3115,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1876947935}
-  m_Text: "Venus\n    mass: 0.82 x earth\n    radius: 0.94 x earth\n    gravity: 0.90g\n
+  m_Text: "Venus\n    mass: 0.82 x earth\n    radius: 0.94 x earth\n    gravity: 0.91g\n
     \   discovery: 1761 Mikhail Lomonosov\n    first visit: 1961 Mariner 2"
   m_OffsetZ: 0
   m_CharacterSize: 1

@@ -596,7 +596,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 528097327}
-  m_Text: "Solar System\n    distance: es.t 6500 LJ\n    discovery: 1704 Edmond Halley"
+  m_Text: "Solar System\n    discovery: 1704 Edmond Halley"
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1362,7 +1362,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1573904619}
-  m_Text: "NGC 1501\n    distance: est. 4'250 LJ\n    discovery: 1787 William Herschel\n"
+  m_Text: "NGC 1501\n    distance: est. 5'000 LJ\n    discovery: 1787 William Herschel\n"
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1672,7 +1672,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1759491291}
-  m_Text: "Trumpler 14\n    desc: Cluster in Carina Nebula \n    distance: 8'980 LJ\n
+  m_Text: "Trumpler 14\n    desc: Cluster in Carina Nebula \n    distance: 7'500 LJ\n
     \   discovery:  2005 NASA"
   m_OffsetZ: 0
   m_CharacterSize: 1

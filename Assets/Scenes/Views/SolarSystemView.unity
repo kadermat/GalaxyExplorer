@@ -2417,7 +2417,7 @@ TextMesh:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1564569952}
   m_Text: "Mercury\n    mass: 0.06 x earth\n    radius: 0.38 x earth\n    gravity:
-    0.38g \n    discovered: 1737 John Bevis\n    first visit: 1974 Mariner 10"
+    0.38g \n    discovered: 3000BC Sumerians\n    first visit: 1974 Mariner 10"
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1

@@ -3337,7 +3337,7 @@ TextMesh:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1949757902}
   m_Text: "Sun\n    mass: 330'000 x earth\n    radius: 109 x earth\n    gravity: 28g\n
-    \   mean Temp: 5500\xB0C (surface) "
+    \   mean Temp: 5600\xB0C (surface) "
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
